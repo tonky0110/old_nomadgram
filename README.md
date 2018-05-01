@@ -71,3 +71,11 @@ GET    /owners/nicolas/dogs/search?color=brown
 버전이 바뀔 수 있기 때문에....
 /v1/dogs/search?color=brown
 /v2/dogs/search?color=brown
+
+
+////
+1-29
+api는 json과 일함, frontend에서 json을 요청함.
+시리얼라이저(erializers) - 
+장고 rest framework의 시리얼라이저는 python object <--> json으로 변환
+프론트엔드(react) - 동일.
