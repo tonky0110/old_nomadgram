@@ -79,3 +79,34 @@ api는 json과 일함, frontend에서 json을 요청함.
 시리얼라이저(erializers) - 
 장고 rest framework의 시리얼라이저는 python object <--> json으로 변환
 프론트엔드(react) - 동일.
+
+
+
+1-36
+Django: Backend
+
+Get user feed
+Like an image / Unlike an image
+Comment on an image
+Find people to follow on Explore
+See profile with images
+Get list of followers
+Get list of following
+search images by hashtag
+Search User
+Follow user / Unfollow user
+See notifications
+Create notification(for follow, comment and like)
+Update profile
+Delete a comment that I created
+Delete a comment from my photos
+Get single photo
+Edit a photo
+Delete a photo
+Upload a photo
+List photo likes
+Log in with Facebook
+log in
+sign up 
+change password
+JWT Token Authentication
