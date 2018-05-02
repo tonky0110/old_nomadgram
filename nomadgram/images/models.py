@@ -28,7 +28,7 @@ class Comment(TimeStampedModel):
     """ comment Model """
 
     message = models.TextField()
-    create = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
+    creator = models.ForeignKey(user_models.User, null=True, on_delete=models.CASCADE)
     image = models.ForeignKey(Image, null=True, on_delete=models.CASCADE, related_name='comments')
     
     def __str__(self):
