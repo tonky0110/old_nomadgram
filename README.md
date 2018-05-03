@@ -110,3 +110,6 @@ log in
 sign up 
 change password
 JWT Token Authentication
+
+1-42)
+RegEx: https://regex101.com
