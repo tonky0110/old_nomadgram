@@ -98,4 +98,36 @@ class UserFollowing(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
+# function based view vs. class based view
+#   request data는  api view만을 위한 것으로 FBV로 할 경우 사용할 수 없다.
+# function based
+# def UserFollowingFBV(request, username):
 
+#     if request.method == 'GET':
+          
+#         request.POST.get("jery", "...")
+
+#         try:
+#             found_user = models.User.objects.get(username=username)
+#         except models.User.DoesNotExist:
+#             return Response(status=status.HTTP_404_NOT_FOUND)
+
+#         user_following = found_user.following.all()
+
+#         serializer = serializers.ListUserSerializer(user_following, many=True)
+
+#         return Response(data=serializer.data, status=status.HTTP_200_OK)
+#     elif request.method == "POST":
+#         ...
+
+
+
+# urls.py
+#     ...
+#     ,
+#         url(
+#             regex=r'^(?P<username>\w+)/following/$',
+#             view=views.UserFollowingFBV(),
+#             name='user_following'
+#         )
+#     ...
