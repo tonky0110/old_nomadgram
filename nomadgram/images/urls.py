@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 
+app_name = "images"
 urlpatterns = [
     # url 패턴은 3가지 타입(1. regular expression, 2. view, 3. name)
     url(
