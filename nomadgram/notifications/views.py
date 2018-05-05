@@ -17,3 +17,19 @@ class Notifications(APIView):
         serializer = serializers.NotificationsSerializer(notifications, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+# user 개인의 notification을 다른 사람이 확인하면 안되기 때문에 view를 function으로 생성한다.
+def create_notification(creator, to, notification_type, image=None, comment=None):
+
+    notification = models.Notification.objects.create(
+        creator=creator, 
+        to=to,
+        notification_type=notification_type,
+        image=image,
+        comment=comment
+    )
+
+    notification.save()
+
+
