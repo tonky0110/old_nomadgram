@@ -1,6 +1,10 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+from taggit.managers import TaggableManager
 from nomadgram.users import models as user_models
 
+
+@python_2_unicode_compatible
 class TimeStampedModel(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -10,6 +14,7 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+@python_2_unicode_compatible
 class Image(TimeStampedModel):
 
     """ Image Model """
@@ -19,6 +24,7 @@ class Image(TimeStampedModel):
     caption = models.TextField()
     creator = models.ForeignKey(
         user_models.User, null=True, on_delete=models.CASCADE, related_name='images')
+    tags = TaggableManager()
     
     @property
     def like_count(self):
@@ -37,6 +43,7 @@ class Image(TimeStampedModel):
             ordering = ['-created_at']
 
 
+@python_2_unicode_compatible
 class Comment(TimeStampedModel):
 
     """ comment Model """
@@ -48,6 +55,8 @@ class Comment(TimeStampedModel):
     def __str__(self):
         return self.message
 
+
+@python_2_unicode_compatible
 class Like(TimeStampedModel):
 
     """ Like Model """

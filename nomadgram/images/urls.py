@@ -28,6 +28,11 @@ urlpatterns = [
         regex=r'comments/(?P<comment_id>[0-9]+)/$',
         view=views.Comment.as_view(),
         name='comment'
+    ),
+    url(
+        regex=r'^search/$',
+        view=views.Search.as_view(),
+        name='search'
     )
 ]
 
@@ -39,3 +44,6 @@ urlpatterns = [
 # 1. take the id from the url
 # 2. we want to find an image with this id
 # 3. we want to create a like form that image
+
+
+# /images/search/

@@ -61,12 +61,13 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.humanize', # Handy template tags
     'django.contrib.admin',
-    'rest_framework',   # REST Framework
 ]
 THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'rest_framework',   # REST Framework
+    'taggit',   #Tags for the photos
 ]
 LOCAL_APPS = [
     'nomadgram.users.apps.UsersConfig',
@@ -238,3 +239,4 @@ SOCIALACCOUNT_ADAPTER = 'nomadgram.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True
