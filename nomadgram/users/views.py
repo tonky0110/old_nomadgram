@@ -21,6 +21,8 @@ class FollowUser(APIView):
 
         user = request.user
 
+        # follow notification
+        
         try:
             user_to_follow = models.User.objects.get(id=user_id)
         except models.User.DoesNotExist:
@@ -68,8 +70,8 @@ class UserProfile(APIView):
 
 class UserFollowers(APIView):
 
-    def get(self, request, username, format=None):
-
+    def get(self, request, username, format=None):        
+        
         try:
             found_user = models.User.objects.get(username=username)
         except models.User.DoesNotExist:

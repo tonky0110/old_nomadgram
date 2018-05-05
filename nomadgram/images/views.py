@@ -36,6 +36,8 @@ class LikeImage(APIView):
 
         user = request.user
 
+        # create notification for like
+
         try:
             found_image = models.Image.objects.get(id=image_id)
         except models.Image.DoesNotExist:
@@ -90,6 +92,8 @@ class CommentOnImage(APIView):
     def post(self, request, image_id, format=None):
 
         user = request.user
+
+        # create notification for comment
 
         try:
             found_image = models.Image.objects.get(id=image_id)
