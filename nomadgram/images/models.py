@@ -30,10 +30,9 @@ class Image(TimeStampedModel):
     def like_count(self):
         return self.likes.all().count()
 
-
     @property
     def comment_count(self):
-        return self.comment.all().count()
+        return self.comments.all().count()
 
 
     def __str__(self):

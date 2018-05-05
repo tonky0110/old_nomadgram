@@ -128,4 +128,17 @@ class Search(APIView):
         #print(request.query_params)
         hashtags = request.query_params.get('hashtags', None)
 
-        print("hashtags:" + hashtags)
+        if hashtags is not None:
+        
+            hashtags = hashtags.split(",")
+                    
+            images = models.Image.objects.filter(tags__name__in=hashtags).distinct()    # in조건 검색
+            # images = models.Image.objects.filter(creator__username__icontains='noma') # like조건검색(icontains: insenstive)
+            # images = models.Image.objects.filter(creator__username__exact='noma')     # equals검색(iexact: insenstive)
+            serializer = serializers.CountImageSerializer(images, many=True)
+
+            return Response(data=serializer.data, status=status.HTTP_200_OK)
+        
+        else:
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
