@@ -162,6 +162,51 @@ class Search(APIView):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
 
+
+# password 변경은 일종의 put임.
+# 기존 비밀번호를 확인하고, 변경된 비밀번호를 입력
+class ChangePassword(APIView):
+
+    def put(self, request, username, format=None):
+
+        user = request.user
+
+        if user.username == username:
+
+            current_password = request.data.get("current_password", None)
+
+            if current_password is not None:
+
+                password_match = user.check_password(current_password)
+
+                if password_match:
+
+                    new_password = request.data.get("new_password", None)
+
+                    if new_password is not None:
+
+                        user.set_password(new_password)
+
+                        user.save()
+
+                        return Response(status=status.HTTP_200_OK)
+
+                    else:
+
+                        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+                else:
+
+                    return Response(status=status.HTTP_400_BAD_REQUEST)
+
+            else:
+
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
 # function based view vs. class based view
 #   request data는  api view만을 위한 것으로 FBV로 할 경우 사용할 수 없다.
 # function based
