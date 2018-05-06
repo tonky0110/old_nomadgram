@@ -182,6 +182,14 @@ class ModerateComments(APIView):
 
 class ImageDetail(APIView):
 
+    def find_own_image(self, image_id, user):
+        try:
+            image=models.Image.objects.get(id=image_id, creator=user)
+            return image
+        except models.Image.DoesNotExist:
+            return None
+
+    
     # get: select
     def get(self, request, image_id, format=None):
 
@@ -196,14 +204,16 @@ class ImageDetail(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+
     # put: update
     def put(self, request, image_id, format=None):
 
         user=request.user
         
-        try:
-            image=models.Image.objects.get(id=image_id, creator=user)
-        except models.Image.DoesNotExist:
+        image = self.find_own_image(image_id, user)
+
+        if image is None:
+
             return Response(status=status.HTTP_401_UNAUTHORIZED)
 
         # partial=True: 필수 항목을 모두 주지 않아도 update 가능하도록 설정.
@@ -218,3 +228,19 @@ class ImageDetail(APIView):
         else:
 
             return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+    
+    # delete: delete
+    def delete(self, request, image_id, format=None):
+        
+        user = request.user
+
+        image = self.find_own_image(image_id, user)
+
+        if image is None:
+
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+      
+        image.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
