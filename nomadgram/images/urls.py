@@ -10,18 +10,23 @@ urlpatterns = [
         name='feed'
     ),
     url(
-        regex=r'^(?P<image_id>[0-9]+)/like/',
+        regex=r'^(?P<image_id>[0-9]+)/like/$',
         view=views.LikeImage.as_view(),
         name='like_image'
     ),
     url(
-        regex=r'^(?P<image_id>[0-9]+)/unlike/',
+        regex=r'^(?P<image_id>[0-9]+)/unlike/$',
         view=views.UnLikeImage.as_view(),
         name='like_image'
     ),
     url(
-        regex=r'^(?P<image_id>[0-9]+)/comments/',
+        regex=r'^(?P<image_id>[0-9]+)/comments/$',
         view=views.CommentOnImage.as_view(),
+        name='comment_image'
+    ),
+    url(
+        regex=r'^(?P<image_id>[0-9]+)/comments/(?P<comment_id>[0-9]+)/$',
+        view=views.ModerateComments.as_view(),
         name='comment_image'
     ),
     url(
@@ -33,7 +38,8 @@ urlpatterns = [
         regex=r'^search/$',
         view=views.Search.as_view(),
         name='search'
-    )
+    ),
+
 ]
 
 
@@ -47,3 +53,7 @@ urlpatterns = [
 
 
 # /images/search/
+
+
+# images/3/comments/5
+# 내가 등록한 image에 달린 comment를 삭제할 수 있는 기능 추가.
