@@ -48,19 +48,11 @@ class CommentSerializer(serializers.ModelSerializer):
         )
 
 
-class LikeSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = models.Like
-        fields = '__all__'
-
-
 class ImageSerializer(serializers.ModelSerializer):
-    
+
     comments = CommentSerializer(many=True)
     #likes = LikeSerializer(many=True)
     creator = FeedUserSerializer()
-
 
     class Meta:
         model = models.Image
@@ -73,4 +65,23 @@ class ImageSerializer(serializers.ModelSerializer):
             'like_count',
             'creator',
             'created_at'
+        )
+
+
+class LikeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Like
+        fields = '__all__'
+
+
+class ImputImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Image
+        fields = (
+            'file',
+            'location',
+            'caption',
+
         )

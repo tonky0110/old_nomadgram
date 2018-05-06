@@ -182,6 +182,7 @@ class ModerateComments(APIView):
 
 class ImageDetail(APIView):
 
+    # get: select
     def get(self, request, image_id, format=None):
 
         user=request.user
@@ -194,3 +195,26 @@ class ImageDetail(APIView):
         serializer = serializers.ImageSerializer(image)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    # put: update
+    def put(self, request, image_id, format=None):
+
+        user=request.user
+        
+        try:
+            image=models.Image.objects.get(id=image_id, creator=user)
+        except models.Image.DoesNotExist:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+
+        # partial=True: 필수 항목을 모두 주지 않아도 update 가능하도록 설정.
+        serializer = serializers.ImputImageSerializer(image, data=request.data, partial=True)
+
+        if serializer.is_valid():
+            
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+
+        else:
+
+            return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
