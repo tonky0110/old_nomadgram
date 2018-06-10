@@ -18,7 +18,7 @@ class ListAllImages(APIView):
 class ListAllComments(APIView):
 
     def get(self, request, format=None):
-
+        
         all_comments = models.Comment.objects.all()
 
         serializer = serializers.CommentSerializer(all_comments, many=True)
