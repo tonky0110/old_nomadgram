@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\zip\\.virtualenvs\\nomadgram-Qvqx_QCA\\scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\zip\\.virtualenvs\\nomadgram-Qvqx_QCA\\scripts\\python.exe",
+    "python.linting.pylintEnabled": false
 }
