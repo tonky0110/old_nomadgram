@@ -9,7 +9,7 @@ urlpatterns = [
         name='feed'
     ),
     url(
-        regex=r'(?P<image_id>\w+)/like/', 
+        regex=r'(?P<image_id>[0-9]+)/like/', 
         view=views.LikeImage.as_view(), 
         name='like_image'
     ),
@@ -22,3 +22,5 @@ urlpatterns = [
 # 1 take the id from the url
 # 2 we want to find and image with this id
 # 3 we want to create a like for that image
+
+# 정규식 표현 : https://regex101.com
