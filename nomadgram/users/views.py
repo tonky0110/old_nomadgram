@@ -89,7 +89,7 @@ class UserFollowing(APIView):
         try:
             found_user = models.User.objects.get(username=username)
         except models.User.DoesNotExist:
-            return Response(status=status.HTTP_4040_NOT_FOUND)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         user_following = found_user.following.all()
 
